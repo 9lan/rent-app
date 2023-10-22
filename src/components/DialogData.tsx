@@ -28,7 +28,7 @@ export const DialogData: React.FC<BookingEventBase> = (props) => {
 		apiClient.bookHome(props.payload, checkIn, checkOut)
 			.then(res => {
 				bookingDialogService.close()
-				notificationService.open(res)
+				notificationService.open(res.message)
 			})
 	}
 

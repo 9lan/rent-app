@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { apiClient } from '../services/apiClient';
 import { BookingEvent, bookingDialogService } from '../services/bookingDialogService';
 import { Dialog, DialogContent } from '@material-ui/core';
-import { DialogData } from '../components/DialogData';
+import { DialogData, Notification } from '../components';
 
 export type HomeData = { title: string; image: string; location: string; price: string; }
 
@@ -51,6 +51,8 @@ export const Home: React.FC<{}> = () => {
 					<DialogData payload={bookingDialog.payload} />
 				</DialogContent>
 			</Dialog>
+
+			<Notification />
 		</div>
 	)
 }

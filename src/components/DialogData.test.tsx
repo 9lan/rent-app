@@ -56,7 +56,7 @@ describe('description', () => {
 		render(<DialogData payload={mockedData} />);
 
 		jest.spyOn(apiClient, 'bookHome').mockImplementation(() => {
-			return Promise.resolve();
+			return Promise.resolve({ message: 'Message: Booked success!' });
 		})
 
 		const checkIn = screen.getByTestId('dialog-checkin');
@@ -73,7 +73,7 @@ describe('description', () => {
 	it('should close the dialog and show notification after booking a home', async () => {
 		render(<DialogData payload={mockedData} />);
 
-		jest.spyOn(apiClient, 'bookHome').mockImplementation(() => Promise.resolve('Message: Booked success!'))
+		jest.spyOn(apiClient, 'bookHome').mockImplementation(() => Promise.resolve({ message: 'Message: Booked success!' }))
 		jest.spyOn(bookingDialogService, 'close').mockImplementation(() => { })
 		jest.spyOn(notificationService, 'open').mockImplementation(() => { })
 
