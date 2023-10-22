@@ -25,7 +25,7 @@ describe('description', () => {
 	it('should show price', () => {
 		render(<DialogData payload={mockedData} />);
 		const price = screen.getByTestId('dialog-price');
-		expect(getNodeText(price)).toBe('1337088');
+		expect(getNodeText(price)).toBe('IDR 1337088');
 	})
 
 	it('should show check-in date field', () => {

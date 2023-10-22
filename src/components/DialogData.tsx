@@ -38,12 +38,26 @@ export const DialogData: React.FC<BookingEventBase> = (props) => {
 
 	return (
 		<div>
-			<div data-testid="dialog-title">{props.payload?.title}</div>
-			<div data-testid="dialog-price">{props.payload?.price}</div>
-			<input data-testid="dialog-checkin" type='date' onChange={e => setCheckIn(e.target.value)} />
-			<input data-testid="dialog-checkout" type='date' onChange={e => setCheckOut(e.target.value)} />
-			<div data-testid="dialog-total-price">IDR {totalPrice}</div>
-			<button data-testid="dialog-book-btn" type='button' onClick={handleBooking}>Book</button>
+			<h2 data-testid="dialog-title">{props.payload?.title}</h2>
+			<div>
+				<span className='fw-bold text-primary fs-6' data-testid="dialog-price">
+					IDR {props.payload?.price}
+				</span> per night
+			</div>
+			<div>
+				<label htmlFor='checkInDate' className='form-label'>Check-in date: </label>
+				<input data-testid="dialog-checkin" type='date' onChange={e => setCheckIn(e.target.value)} className='form-control' id='checkInDate' />
+			</div>
+			<div>
+				<label htmlFor='checkOutDate' className='form-label'>Check-out date: </label>
+				<input data-testid="dialog-checkout" type='date' onChange={e => setCheckOut(e.target.value)} className='form-control' id='checkOutDate' />
+			</div>
+			<div className='my-3 text-end'>
+				Total <span className='fw-bold' data-testid="dialog-total-price">IDR {totalPrice}</span>
+			</div>
+			<div className='d-flex justify-content-end'>
+				<button data-testid="dialog-book-btn" type='button' onClick={handleBooking} className='btn btn-primary'>Book</button>
+			</div>
 		</div>
 	)
 }
