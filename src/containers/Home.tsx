@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { apiClient } from '../services/apiClient';
 import { BookingEvent, bookingDialogService } from '../services/bookingDialogService';
 import { Dialog, DialogContent } from '@material-ui/core';
+import { DialogData } from '../components/DialogData';
 
 export type HomeData = { title: string; image: string; location: string; price: string; }
 
@@ -47,7 +48,7 @@ export const Home: React.FC<{}> = () => {
 
 			<Dialog open={bookingDialog.open} onClose={() => bookingDialogService.close()}>
 				<DialogContent>
-					{bookingDialog.payload ? bookingDialog.payload.title : null}
+					<DialogData payload={bookingDialog.payload} />
 				</DialogContent>
 			</Dialog>
 		</div>
