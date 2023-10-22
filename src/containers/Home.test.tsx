@@ -2,6 +2,7 @@ import React from 'react';
 import { getNodeText, render, screen } from '@testing-library/react';
 import { Home } from './Home';
 import { apiClient } from '../services/apiClient';
+import { bookingDialogService } from '../services/bookingDialogService';
 
 describe('Home Component', () => {
 	beforeEach(() => {
@@ -61,5 +62,27 @@ describe('Home Component', () => {
 		render(<Home />);
 		const homePrices = await screen.findAllByTestId('home-price');
 		expect(getNodeText(homePrices[0])).toBe('IDR 1337088/night');
+	})
+
+	it('should show home booking btn', async () => {
+		render(<Home />);
+		const homeBookingBtn = await screen.findAllByTestId('home-booking-btn');
+		expect(homeBookingBtn[0]).toBeTruthy();
+	})
+
+	it('should open home booking dialog', async () => {
+		render(<Home />);
+
+		jest.spyOn(bookingDialogService, 'open').mockImplementation(() => { });
+
+		const homeBookingBtn = await screen.findAllByTestId('home-booking-btn');
+		homeBookingBtn[0].click();
+
+		expect(bookingDialogService.open).toHaveBeenCalledWith({
+			title: 'Apartemen Aeropolis Residence',
+			image: 'room.png',
+			location: 'Tangerang Airport',
+			price: '1337088',
+		});
 	})
 });
