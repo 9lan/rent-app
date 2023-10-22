@@ -52,6 +52,18 @@ describe('description', () => {
 		expect(getNodeText(totalPrice)).toBe('IDR 4011264')
 	})
 
+	it('should show "--" for invalid date', () => {
+		render(<DialogData payload={mockedData} />);
+		const checkIn = screen.getByTestId('dialog-checkin');
+		const checkOut = screen.getByTestId('dialog-checkout');
+		const totalPrice = screen.getByTestId('dialog-total-price');
+
+		fireEvent.change(checkIn, { target: { value: '2023-10-22' } })
+		fireEvent.change(checkOut, { target: { value: '2023-10-20' } })
+
+		expect(getNodeText(totalPrice)).toBe('IDR --')
+	})
+
 	it('should book home after clicking the book btn', () => {
 		render(<DialogData payload={mockedData} />);
 

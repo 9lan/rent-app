@@ -16,7 +16,7 @@ export const DialogData: React.FC<BookingEventBase> = (props) => {
 		const totalNights = checkOutDate.diff(checkInDate, 'days');
 		const total = totalNights * Number(price);
 
-		if (total) {
+		if (total > 0) {
 			setTotalPrice(total.toString());
 		} else {
 			setTotalPrice('--')
